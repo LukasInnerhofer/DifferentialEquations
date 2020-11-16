@@ -37,7 +37,7 @@
     The set of the complex numbers is defined as 
     \(\mathbb{C} = \{a + bi : a,b \in \mathbb{R},i^2 = -1\}\)
     with the following algebraic operations:
-    \begin{equation} \label{complex operations}
+    \begin{equation} \label{equation: complex operations}
     \begin{split}
         (a + bi) + (c + di) = (a + c) + (b + d)i \in \mathbb{C}\\
         (a + bi)(c + di) = (ac - bd) + (bc + ad)i \in \mathbb{C}\\
@@ -61,26 +61,22 @@
     \end{definition}
 
     \begin{examples}
-    \begin{example} \label{ex:subring}
+    \begin{example} \label{example: subring}
         \(R = \{a + bi : a,b \in \mathbb{Z}\}\) is a subring of \(\mathbb{C}\) but not a subfield.
     \end{example}
     \begin{proof}
         Let \(a,b,c,d \in \mathbb{Z}, x = a + bi, y = c + di \in R\)
-        \begin{equation*}
-        \begin{split}
-            x + y = (a + bi) + (c + di) = (a + c) + (b + d)i \in R\\
-            -x = -a - bi \in R\\
-            xy = (a + bi)(c + di) = (ac - bd) + (bc + ad)i \in R\\
-            2 \in R, 2^{-1} \notin R
-        \end{split}
-        \end{equation*}
+        \[x + y = (a + bi) + (c + di) = (a + c) + (b + d)i \in R\]
+        \[-x = -a - bi \in R\]
+        \[xy = (a + bi)(c + di) = (ac - bd) + (bc + ad)i \in R\]
+        \[2 \in R, 2^{-1} \notin R\]
     \end{proof}
 
     \begin{example}
         \(K = \{a + bi : a,b \in \mathbb{Q}\}\) is a subfield of \(\mathbb{C}\).
     \end{example}
     \begin{proof}
-        The same arguments from \cref{ex:subring} hold, except
+        The same arguments from \cref{example: subring} hold, except
         \(x^{-1} = \frac{a}{a^2 + b^2} + \frac{b}{a^2 + b^2}i \in K\)
     \end{proof}
 
@@ -88,20 +84,30 @@
         \(R = \{\sum_{n = 0}^\infty a_n\pi^n : a_n \in \mathbb{Z}\}\) is a subring of \(\mathbb{C}\) but not a subfield.
     \end{example}
     \begin{proof}
-        Let \(x, y \in R\)
-        \[ x = \sum_{n = 0}^\infty a_n\pi^n, y = \sum_{n = 0}^\infty b_n\pi^n : a_n,b_n \in \mathbb{Z}\]
-        Then
-        \begin{equation*}
-        \begin{split}
-            x + y = \sum_{n = 0}^\infty (a_n + b_n)\pi^n \in R\\
-            -x = \sum_{n = 0}^\infty -a_n\pi^n \in R\\
+        Let \(x, y \in R, x = \sum_{n = 0}^\infty a_n\pi^n, y = \sum_{n = 0}^\infty b_n\pi^n : a_n,b_n \in \mathbb{Z}\)
+        \[x + y = \sum_{n = 0}^\infty (a_n + b_n)\pi^n \in R\]
+        \[-x = \sum_{n = 0}^\infty -a_n\pi^n \in R\]
+        \[
             xy = \sum_{n = 0}^\infty a_n\pi^ny \in R \impliedby
             \forall n \in \mathbb{N} \ a_n\pi^ny = 
             \sum_{m = 0}^\infty b_m\pi^ma_n\pi^n = 
-            \sum_{m = 0}^\infty a_nb_m\pi^{m + n} \in R\\
-            2 \in R, 2^{-1} \notin R
-        \end{split}
-        \end{equation*}
+            \sum_{m = 0}^\infty a_nb_m\pi^{m + n} \in R
+        \]
+        \[2 \in R, 2^{-1} \notin R\]
+    \end{proof}
+
+    \begin{example}
+        \(R = \{\sum_{n = 0}^\infty a_n\pi^n : a_n \in \mathbb{Q}\}\) is a subring of \(\mathbb{C}\) but not a subfield.
+    \end{example}
+    \begin{proof}
+        Suppose \(\pi^{-1} = f(\pi)\) where f is a polynomial over \(\mathbb{Q}\).
+        \(\implies \pi f(\pi) - 1 = 0\), i.e. \(\pi\) satisfies a nontrivial polynomial equation with rational coefficients,
+        contrary to \cref{theorem: pi is transcendental}. 
     \end{proof}
     \end{examples}
+
+    \chapter{Transcendental Numbers}
+    \begin{theorem} \label{theorem: pi is transcendental}
+        \(\pi\) is transcendental.
+    \end{theorem}
 \end{document}
