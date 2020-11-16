@@ -1,0 +1,107 @@
+\documentclass{book}
+\usepackage{amsmath, amsthm, thmtools, amssymb}
+\usepackage{hyperref, cleveref}
+\usepackage[a4paper, margin=2cm]{geometry}
+
+\declaretheorem[
+    name=Theorem,
+    refname={theorem, theorems},
+    Refname={Theorem, Theorems},
+    numberwithin=chapter]
+    {theorem}
+\declaretheorem[
+    name=Definition,
+    refname={definition, definitions},
+    Refname={Definition, Definitions},
+    style=definition,
+    sibling=theorem]
+    {definition}
+\declaretheorem[
+    style=definition,
+    sibling=theorem]
+    {examples}
+\declaretheorem[
+    style=definition,
+    numberwithin=examples]
+    {example}
+
+\title{Galois Theory}
+\author{Ian Stewart, Lukas Innerhofer}
+\date{09.11.2020}
+\begin{document}
+    \maketitle
+    \tableofcontents
+
+    \chapter{Classical Algebra}
+    \section{Complex Numbers}
+    The set of the complex numbers is defined as 
+    \(\mathbb{C} = \{a + bi : a,b \in \mathbb{R},i^2 = -1\}\)
+    with the following algebraic operations:
+    \begin{equation} \label{complex operations}
+    \begin{split}
+        (a + bi) + (c + di) = (a + c) + (b + d)i \in \mathbb{C}\\
+        (a + bi)(c + di) = (ac - bd) + (bc + ad)i \in \mathbb{C}\\
+        :a,b,c,d \in \mathbb{R}
+    \end{split}
+    \end{equation}
+
+    \section{Subfields and Subrings of the Complex Numbers}
+    \begin{definition}
+        A \textit{subring} of \(\mathbb{C}\) is a subset \(R \subseteq \mathbb{C}\) such that
+        \[1 \in R\]
+        \[\forall x,y \in R \ x + y,-x,xy \in R\]
+        A ring with the condition \(1 \in R\) is often called 'ring-with-1' or 'unital ring'.
+        We use ring as an abbreviation.\\
+        A \textit{subfield} of \(\mathbb{C}\) is a subring \(K \subseteq \mathbb{C}\)
+        with the additional condition
+        \[\forall x \in K \ x^{-1} \in K\]
+        It follows that \(\forall x \in R \ x - x = 0 \in R\)
+        and that R is closed under the algebraic operations of addition, subtraction and multiplication.
+        K inherits these attributes and is also closed under division.
+    \end{definition}
+
+    \begin{examples}
+    \begin{example} \label{ex:subring}
+        \(R = \{a + bi : a,b \in \mathbb{Z}\}\) is a subring of \(\mathbb{C}\) but not a subfield.
+    \end{example}
+    \begin{proof}
+        Let \(a,b,c,d \in \mathbb{Z}, x = a + bi, y = c + di \in R\)
+        \begin{equation*}
+        \begin{split}
+            x + y = (a + bi) + (c + di) = (a + c) + (b + d)i \in R\\
+            -x = -a - bi \in R\\
+            xy = (a + bi)(c + di) = (ac - bd) + (bc + ad)i \in R\\
+            2 \in R, 2^{-1} \notin R
+        \end{split}
+        \end{equation*}
+    \end{proof}
+
+    \begin{example}
+        \(K = \{a + bi : a,b \in \mathbb{Q}\}\) is a subfield of \(\mathbb{C}\).
+    \end{example}
+    \begin{proof}
+        The same arguments from \cref{ex:subring} hold, except
+        \(x^{-1} = \frac{a}{a^2 + b^2} + \frac{b}{a^2 + b^2}i \in K\)
+    \end{proof}
+
+    \begin{example}
+        \(R = \{\sum_{n = 0}^\infty a_n\pi^n : a_n \in \mathbb{Z}\}\) is a subring of \(\mathbb{C}\) but not a subfield.
+    \end{example}
+    \begin{proof}
+        Let \(x, y \in R\)
+        \[ x = \sum_{n = 0}^\infty a_n\pi^n, y = \sum_{n = 0}^\infty b_n\pi^n : a_n,b_n \in \mathbb{Z}\]
+        Then
+        \begin{equation*}
+        \begin{split}
+            x + y = \sum_{n = 0}^\infty (a_n + b_n)\pi^n \in R\\
+            -x = \sum_{n = 0}^\infty -a_n\pi^n \in R\\
+            xy = \sum_{n = 0}^\infty a_n\pi^ny \in R \impliedby
+            \forall n \in \mathbb{N} \ a_n\pi^ny = 
+            \sum_{m = 0}^\infty b_m\pi^ma_n\pi^n = 
+            \sum_{m = 0}^\infty a_nb_m\pi^{m + n} \in R\\
+            2 \in R, 2^{-1} \notin R
+        \end{split}
+        \end{equation*}
+    \end{proof}
+    \end{examples}
+\end{document}
