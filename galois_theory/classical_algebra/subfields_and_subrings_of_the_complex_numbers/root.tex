@@ -152,3 +152,16 @@
     \[(\zeta^k)^m = \zeta^{mk} = e^{2\pi i\frac{k}{r}} = 1 \iff r|k\]
     So $\exists r > 1$ dividing both $n$ and $k \iff$ $k$ is not prime to $n$.
 \end{proof}
+
+\begin{examples}
+\begin{example}
+    Complex conjugation $a + bi \mapsto a - bi$ is an automorphism of $\mathbb{C}$
+\end{example}
+\begin{proof}
+    Let $x = a + bi,y = c + di,\alpha : \mathbb{C} \to \mathbb{C},a + bi \mapsto a - bi$
+    \[\alpha(x + y) = \alpha((a + bi) + (c + di)) = \alpha((a + c) + (b + d)i) = (a + c) - (b + d)i = (a - bi) + (c - di) = \alpha(x) + \alpha(y)\]
+    \[\alpha(xy) = \alpha((a + bi)(c + di)) = \alpha((ac - bd) + (bc + ad)i) = (ac - bd) - (bc + ad)i = (a - bi)(c - di) = \alpha(x)\alpha(y)\]
+    \[x \neq y \implies \alpha(x) \neq \alpha(y)\]
+    \[\forall v \in \mathbb{C},v = a + bi \ \exists u \in \mathbb{C},u = a - bi : \alpha(u) = v\]
+\end{proof}
+\end{examples}
