@@ -1,0 +1,71 @@
+\documentclass{article}
+\usepackage{amsmath, amsthm}
+\usepackage{cleveref}
+\title{Differential Equations}
+\author{Lukas Innerhofer}
+\date{09.11.2020}
+\begin{document}
+    \maketitle
+
+    \section{First Order Inhomogeneous Linear Differential Equations}
+    \newtheorem{theorem}{Theorem}[section]
+    \begin{theorem}
+        Differential equations of the form:
+        \begin{equation} \label{differential equation}
+            \frac{dy(x)}{dx}+\mu(x)y(x) = \sigma(x)
+        \end{equation}
+        are called first order inhomogeneous linear differential equations and 
+        have the following general solution:
+        \begin{equation} \label{general solution}
+            y(x) = e^{-\int \mu(x)dx} \int e^{\int \mu(x)dx} \sigma(x) dx
+        \end{equation}
+    \end{theorem}
+    Two proofs of this theorem will be discussed.
+
+    \subsection{Integrating Factor}
+    \begin{proof}
+        Recall the product rule for derivatives:
+        \begin{theorem}[Product Rule]
+            \begin{equation} \label{product rule}
+                \frac{d}{dx}(uv)=\frac{du}{dx}v+u\frac{dv}{dx}
+            \end{equation}
+        \end{theorem}
+        By multiplying both sides of \cref{differential equation} by a cleverly chosen
+        exponential function, the left side can be turned into the derivative of 
+        a product.
+        \[ e^{\int \mu(x)dx} (\frac{dy(x)}{dx}+\mu(x)y) = e^{\int \mu(x)dx} \sigma(x) \]
+        \[ e^{\int \mu(x)dx}\frac{dy}{dx} + \mu(x)e^{\int \mu(x)dx}y = e^{\int \mu(x)dx} \sigma(x) \]
+        Thus, by \cref{product rule}:
+        \[ \frac{d}{dx}(e^{\int \mu(x)dx}y(x)) = e^{\int \mu(x)dx} \sigma(x) \]
+        \[ e^{\int \mu(x)dx}y(x) = \int e^{\int \mu(x)dx} \sigma(x) dx \]
+        \[ y(x) = e^{-\int \mu(x)dx} \int e^{\int \mu(x)dx} \sigma(x) dx \]
+    \end{proof}
+
+    \subsection{Variation of Constants}
+    \begin{proof}
+        I can't tell you why we're allowed to do this, but here goes:\\
+        We first look at the homogeneous version of \cref{differential equation}.
+        \[ \frac{dy(x)}{dx}+\mu(x)y(x) = 0 \]
+        \[ \frac{dy(x)}{y(x)} = -\mu(x)dx \]
+        \[ \int \frac{dy(x)}{y(x)} = -\int \mu(x)dx \]
+        \[ ln(y(x)) + C = -\int \mu(x)dx \]
+        \[ y(x) = e^{-\int \mu(x)dx + C} = Ce^{-\int \mu(x)dx} \]
+        We now turn the constant of integration into a function of x:
+        \begin{equation} \label{y with varying constant}
+            y(x) = c(x)e^{-\int \mu(x)dx}
+        \end{equation}
+        Plugging this into the original \cref{differential equation}, we have:
+        \[ \frac{d}{dx}(c(x)e^{-\int \mu(x)dx}) + \mu(x)c(x)e^{-\int \mu(x)dx} = \sigma(x) \]
+        \begin{equation*}
+        \begin{split}
+            \frac{dc(x)}{dx}e^{-\int \mu(x)dx} + c(x)\frac{d}{dx}(e^{-\int \mu(x)dx}) + \mu(x)c(x)e^{-\int \mu(x)dx} =\\
+            \frac{dc(x)}{dx}e^{-\int \mu(x)dx} - \mu(x)c(x)e^{-\int \mu(x)dx} + \mu(x)c(x)e^{-\int \mu(x)dx} =\\
+            \frac{dc(x)}{dx}e^{-\int \mu(x)dx} = \sigma(x)
+        \end{split}
+        \end{equation*}
+        \[ \frac{dc(x)}{dx} = e^{\int \mu(x)dx}\sigma(x) \]
+        \[ c(x) = \int e^{\int \mu(x)dx}\sigma(x) dx \]
+        Plugging this into \cref{y with varying constant}, we have:
+        \[ y(x) = e^{-\int \mu(x)dx} \int e^{\int \mu(x)dx}\sigma(x)dx \]
+    \end{proof}
+\end{document}

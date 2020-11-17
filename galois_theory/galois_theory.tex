@@ -1,0 +1,149 @@
+\documentclass{book}
+\usepackage{amsmath, amsthm, thmtools, amssymb}
+\usepackage{hyperref, cleveref}
+\usepackage[a4paper, margin=2cm]{geometry}
+
+\declaretheorem[
+    name=Theorem,
+    refname={theorem, theorems},
+    Refname={Theorem, Theorems},
+    numberwithin=chapter]
+    {theorem}
+\declaretheorem[
+    name=Definition,
+    refname={definition, definitions},
+    Refname={Definition, Definitions},
+    style=definition,
+    sibling=theorem]
+    {definition}
+\declaretheorem[
+    style=definition,
+    sibling=theorem]
+    {examples}
+\declaretheorem[
+    style=definition,
+    numberwithin=examples]
+    {example}
+
+\title{Galois Theory}
+\author{Ian Stewart, Lukas Innerhofer}
+\date{09.11.2020}
+\begin{document}
+    \maketitle
+    \tableofcontents
+
+    \chapter{Classical Algebra}
+    \section{Complex Numbers}
+    The set of the complex numbers is defined as 
+    \(\mathbb{C} = \{a + bi : a,b \in \mathbb{R},i^2 = -1\}\)
+    with the following algebraic operations:
+    \begin{equation} \label{equation: complex operations}
+    \begin{split}
+        (a + bi) + (c + di) = (a + c) + (b + d)i \in \mathbb{C}\\
+        (a + bi)(c + di) = (ac - bd) + (bc + ad)i \in \mathbb{C}\\
+        :a,b,c,d \in \mathbb{R}
+    \end{split}
+    \end{equation}
+
+    \section{Subfields and Subrings of the Complex Numbers}
+    \begin{definition}
+        A \textit{subring} of \(\mathbb{C}\) is a subset \(R \subseteq \mathbb{C}\) such that
+        \[1 \in R\]
+        \[\forall x,y \in R \ x + y,-x,xy \in R\]
+        A ring with the condition \(1 \in R\) is often called 'ring-with-1' or 'unital ring'.
+        We use ring as an abbreviation.\\
+        A \textit{subfield} of \(\mathbb{C}\) is a subring \(K \subseteq \mathbb{C}\)
+        with the additional condition
+        \[\forall x \in K \ x^{-1} \in K\]
+        It follows that \(\forall x \in R \ x - x = 0 \in R\)
+        and that R is closed under the algebraic operations of addition, subtraction and multiplication.
+        K inherits these attributes and is also closed under division.
+    \end{definition}
+
+    \begin{examples}
+    \begin{example} \label{example: subring}
+        \(R = \{a + bi : a,b \in \mathbb{Z}\}\) is a subring of \(\mathbb{C}\) but not a subfield.
+    \end{example}
+    \begin{proof}
+        Let \(a,b,c,d \in \mathbb{Z}, x = a + bi, y = c + di \in R\)
+        \[x + y = (a + bi) + (c + di) = (a + c) + (b + d)i \in R\]
+        \[-x = -a - bi \in R\]
+        \[xy = (a + bi)(c + di) = (ac - bd) + (bc + ad)i \in R\]
+        \[2 \in R, 2^{-1} \notin R\]
+    \end{proof}
+
+    \begin{example}
+        \(K = \{a + bi : a,b \in \mathbb{Q}\}\) is a subfield of \(\mathbb{C}\).
+    \end{example}
+    \begin{proof}
+        The same arguments from \cref{example: subring} hold, except
+        \(x^{-1} = \frac{a}{a^2 + b^2} + \frac{b}{a^2 + b^2}i \in K\)
+    \end{proof}
+
+    \begin{example} \label{example: polynomials in pi with integer coefficients}
+        The set of all polynomials in \(\pi\) with integer coefficients
+        \[R = \{p(\pi) : p(\pi) = \sum_{n = 0}^N a_n\pi^n,a_n \in \mathbb{Z},n,N \in \mathbb{N},N > 0\}\] 
+        is a subring of \(\mathbb{C}\) but not a subfield.
+    \end{example}
+    \begin{proof}
+        Let 
+        \begin{equation*}
+        \begin{split}
+            x, y \in R, 
+            x = \sum_{n = 0}^N a_n\pi^n, 
+            y = \sum_{m = 0}^M b_m\pi^m
+             : a_n,b_m \in \mathbb{Z},\\
+            a_k = 0\ \forall k > N,
+            b_k = 0\ \forall k > M : k \in \mathbb{N}
+        \end{split}
+        \end{equation*}
+        \[K = max(N, M)\]
+        Then
+        \[x + y = \sum_{k = 0}^K (a_k + b_k)\pi^k \in R\]
+        \[-x = \sum_{n = 0}^N -a_n\pi^n \in R\]
+        \[
+            xy = \sum_{n = 0}^N a_n\pi^ny \in R \impliedby
+            \forall n \in \mathbb{N} \ a_n\pi^ny = 
+            \sum_{m = 0}^M b_m\pi^ma_n\pi^n = 
+            \sum_{m = 0}^M a_nb_m\pi^{m + n} \in R
+        \]
+        \[2 \in R, 2^{-1} \notin R\]
+    \end{proof}
+
+    \begin{example} \label{example: polynomials in pi with rational coefficients}
+        The set of all polynomials in \(\pi\) with rational coefficients
+        \[R = \{\sum_{n = 0}^\infty a_n\pi^n : a_n \in \mathbb{Q}\}\]
+        is a subring of \(\mathbb{C}\) but not a subfield.
+    \end{example}
+    \begin{proof}
+        For additive, subtractive and multiplicative closure the arguments from \cref{example: polynomials in pi with integer coefficients} hold.
+        Suppose \(\pi^{-1} = f(\pi)\) where f is a polynomial over \(\mathbb{Q}\).
+        \(\implies \pi f(\pi) - 1 = 0\), i.e. \(\pi\) satisfies a nontrivial polynomial equation with rational coefficients,
+        contrary to \cref{theorem: pi is transcendental}. 
+    \end{proof}
+
+    \begin{example}
+        Let R be the set of all polynomials in \(\pi\) with rational coefficients
+        as defined in \cref{example: polynomials in pi with rational coefficients}.\\
+        The set of all rational expressions of polynomials in \(\pi\) with rational coefficients
+        \[K = \{\frac{p(\pi)}{q(\pi)} : p,q \in R, q \neq 0\}\]
+        is a subfield of \(\mathbb{C}\).
+    \end{example}
+    \begin{proof}
+        Let \(x,y \in K,x = \frac{p}{q},y = \frac{r}{s}\).
+        \[x + y = \frac{ps + rq}{qs} \in K \impliedby ps + rq,qs \in R,qs \neq 0\]
+        \[-x = \frac{-p}{q} \in K\]
+        \[xy = \frac{pr}{qs} \in K \impliedby pr,qs \in R,qs \neq 0\]
+        \[x^{-1} = \frac{q}{p} \in K : x \neq 0\]
+    \end{proof}
+
+    \begin{example}
+        The set of all even integers \(2\mathbb{Z}\) is (by our convention) not a ring because \(1 \notin 2\mathbb{Z}\).
+    \end{example}
+    \end{examples}
+
+    \chapter{Transcendental Numbers}
+    \begin{theorem} \label{theorem: pi is transcendental}
+        \(\pi\) is transcendental.
+    \end{theorem}
+\end{document}
