@@ -81,17 +81,29 @@
     \end{proof}
 
     \begin{example}
-        \(R = \{\sum_{n = 0}^\infty a_n\pi^n : a_n \in \mathbb{Z}\}\) is a subring of \(\mathbb{C}\) but not a subfield.
+        \(R = \{\sum_{n = 0}^N a_n\pi^n : a_n \in \mathbb{Z},n,N \in \mathbb{N},N > 0\}\) is a subring of \(\mathbb{C}\) but not a subfield.
     \end{example}
     \begin{proof}
-        Let \(x, y \in R, x = \sum_{n = 0}^\infty a_n\pi^n, y = \sum_{n = 0}^\infty b_n\pi^n : a_n,b_n \in \mathbb{Z}\)
-        \[x + y = \sum_{n = 0}^\infty (a_n + b_n)\pi^n \in R\]
-        \[-x = \sum_{n = 0}^\infty -a_n\pi^n \in R\]
+        Let 
+        \begin{equation*}
+        \begin{split}
+            x, y \in R, 
+            x = \sum_{n = 0}^N a_n\pi^n, 
+            y = \sum_{m = 0}^M b_m\pi^m
+             : a_n,b_m \in \mathbb{Z},\\
+            a_k = 0\ \forall k > N,
+            b_k = 0\ \forall k > M : k \in \mathbb{N}
+        \end{split}
+        \end{equation*}
+        \[K = max(N, M)\]
+        Then
+        \[x + y = \sum_{k = 0}^K (a_k + b_k)\pi^k \in R\]
+        \[-x = \sum_{n = 0}^N -a_n\pi^n \in R\]
         \[
-            xy = \sum_{n = 0}^\infty a_n\pi^ny \in R \impliedby
+            xy = \sum_{n = 0}^N a_n\pi^ny \in R \impliedby
             \forall n \in \mathbb{N} \ a_n\pi^ny = 
-            \sum_{m = 0}^\infty b_m\pi^ma_n\pi^n = 
-            \sum_{m = 0}^\infty a_nb_m\pi^{m + n} \in R
+            \sum_{m = 0}^M b_m\pi^ma_n\pi^n = 
+            \sum_{m = 0}^M a_nb_m\pi^{m + n} \in R
         \]
         \[2 \in R, 2^{-1} \notin R\]
     \end{proof}
