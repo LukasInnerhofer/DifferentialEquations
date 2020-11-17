@@ -80,8 +80,10 @@
         \(x^{-1} = \frac{a}{a^2 + b^2} + \frac{b}{a^2 + b^2}i \in K\)
     \end{proof}
 
-    \begin{example}
-        \(R = \{\sum_{n = 0}^N a_n\pi^n : a_n \in \mathbb{Z},n,N \in \mathbb{N},N > 0\}\) is a subring of \(\mathbb{C}\) but not a subfield.
+    \begin{example} \label{example: polynomials in pi with integer coefficients}
+        The set of all polynomials in \(\pi\) with integer coefficients
+        \[R = \{p(\pi) : p(\pi) = \sum_{n = 0}^N a_n\pi^n,a_n \in \mathbb{Z},n,N \in \mathbb{N},N > 0\}\] 
+        is a subring of \(\mathbb{C}\) but not a subfield.
     \end{example}
     \begin{proof}
         Let 
@@ -108,13 +110,31 @@
         \[2 \in R, 2^{-1} \notin R\]
     \end{proof}
 
-    \begin{example}
-        \(R = \{\sum_{n = 0}^\infty a_n\pi^n : a_n \in \mathbb{Q}\}\) is a subring of \(\mathbb{C}\) but not a subfield.
+    \begin{example} \label{example: polynomials in pi with rational coefficients}
+        The set of all polynomials in \(\pi\) with rational coefficients
+        \[R = \{\sum_{n = 0}^\infty a_n\pi^n : a_n \in \mathbb{Q}\}\]
+        is a subring of \(\mathbb{C}\) but not a subfield.
     \end{example}
     \begin{proof}
+        For additive, subtractive and multiplicative closure the arguments from \cref{example: polynomials in pi with integer coefficients} hold.
         Suppose \(\pi^{-1} = f(\pi)\) where f is a polynomial over \(\mathbb{Q}\).
         \(\implies \pi f(\pi) - 1 = 0\), i.e. \(\pi\) satisfies a nontrivial polynomial equation with rational coefficients,
         contrary to \cref{theorem: pi is transcendental}. 
+    \end{proof}
+
+    \begin{example}
+        Let R be the set of all polynomials in \(\pi\) with rational coefficients
+        as defined in \cref{example: polynomials in pi with rational coefficients}.\\
+        The set of all rational expressions of polynomials in \(\pi\) with rational coefficients
+        \[K = \{\frac{p(\pi)}{q(\pi)} : p,q \in R, q \neq 0\}\]
+        is a subfield of \(\mathbb{C}\).
+    \end{example}
+    \begin{proof}
+        Let \(x,y \in K,x = \frac{p}{q},y = \frac{r}{s}\).
+        \[x + y = \frac{ps + rq}{qs} \in K \impliedby ps + rq,qs \in R,qs \neq 0\]
+        \[-x = \frac{-p}{q} \in K\]
+        \[xy = \frac{pr}{qs} \in K \impliedby pr,qs \in R,qs \neq 0\]
+        \[x^{-1} = \frac{q}{p} \in K : x \neq 0\]
     \end{proof}
     \end{examples}
 
