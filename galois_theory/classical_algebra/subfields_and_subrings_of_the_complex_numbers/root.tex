@@ -154,14 +154,60 @@
 \end{proof}
 
 \begin{examples}
-\begin{example}
+\begin{example} \label{example: complex conjugate}
     Complex conjugation $a + bi \mapsto a - bi$ is an automorphism of $\mathbb{C}$
 \end{example}
 \begin{proof}
     Let $x = a + bi,y = c + di,\alpha : \mathbb{C} \to \mathbb{C},a + bi \mapsto a - bi$
-    \[\alpha(x + y) = \alpha((a + bi) + (c + di)) = \alpha((a + c) + (b + d)i) = (a + c) - (b + d)i = (a - bi) + (c - di) = \alpha(x) + \alpha(y)\]
-    \[\alpha(xy) = \alpha((a + bi)(c + di)) = \alpha((ac - bd) + (bc + ad)i) = (ac - bd) - (bc + ad)i = (a - bi)(c - di) = \alpha(x)\alpha(y)\]
+    \begin{equation*}
+    \begin{split}
+        \alpha(x + y) = \alpha((a + bi) + (c + di)) =\\
+        \alpha((a + c) + (b + d)i) =\\
+        (a + c) - (b + d)i =\\
+        (a - bi) + (c - di) = \alpha(x) + \alpha(y)    
+    \end{split}
+    \end{equation*}
+    \begin{equation*}
+    \begin{split}
+        \alpha(xy) = \alpha((a + bi)(c + di)) =\\
+        \alpha((ac - bd) + (bc + ad)i) =\\
+        (ac - bd) - (bc + ad)i =\\
+        (a - bi)(c - di) = \alpha(x)\alpha(y)
+    \end{split}
+    \end{equation*}
+    Thus, $\alpha$ is a homomorphism. To prove that it is an isomorphism and therefore, by it's definition an automorphism, we
+    prove its injective and surjective property:
     \[x \neq y \implies \alpha(x) \neq \alpha(y)\]
     \[\forall v \in \mathbb{C},v = a + bi \ \exists u \in \mathbb{C},u = a - bi : \alpha(u) = v\]
+\end{proof}
+
+\begin{example}
+    $K = \{p + q\sqrt{2} : p,q \in \mathbb{Q}\}$ is a subfield of $\mathbb{C}$.
+    $p + q\sqrt{2} \mapsto p - q\sqrt{2}$ is an automorphism of $K$.
+\end{example}
+\begin{proof}
+    Let $x = p + q\sqrt{2},y = r + s\sqrt{2}$
+    \[x + y = (p + r) + (q + s)\sqrt{2} \in K\]
+    \[-x = -p - q\sqrt{2} \in K\]
+    \[xy = (pr + 2qs) + (qr + ps)\sqrt{2} \in K\]
+    \[x^{-1} = \frac{p}{p^2 - 2q^2} - \frac{q}{p^2 - 2q^2}\sqrt{2}\]
+    Thus, $K$ is a subfield of $\mathbb{C}$. Now, let $\alpha : K \to K,p + q\sqrt{2} \mapsto p - q\sqrt{2}$
+    \begin{equation*}
+    \begin{split}
+        \alpha(x + y) = \alpha((p + r) + (q + s)\sqrt{2} =\\
+        (p + r) - (q + s)\sqrt{2} =\\
+        (p - q\sqrt{2}) + (r - s\sqrt{2}) = \alpha(x) + \alpha(y)
+    \end{split}
+    \end{equation*}
+    \begin{equation*}
+    \begin{split}
+        \alpha(xy) = \alpha((pr + 2qs) + (qr + ps)\sqrt{2}) =\\
+        (pr + 2qs) - (qr + ps)\sqrt{2} =\\
+        (p - q\sqrt{2})(r - s\sqrt{2}) = \alpha(x)\alpha(y)
+    \end{split}
+    \end{equation*}
+    Thus, $\alpha$ is a homomorphism. Now, as in \cref{example: complex conjugate}, we prove its injective and surjective property:
+    \[x \neq y \implies \alpha(x) \neq \alpha(y)\]
+    \[\forall v \in K,v = p + q\sqrt{2} \ \exists u \in K,u = p - q\sqrt{2} : \alpha(u) = v\]
 \end{proof}
 \end{examples}
